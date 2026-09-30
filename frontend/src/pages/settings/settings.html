@@ -2,54 +2,18 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DOCKER - 系统设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双栈商店 - 系统设置</title>
     <link rel="icon" href="/src/images/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/src/components/sidebar/sidebar.css">
     <link rel="stylesheet" href="/src/components/common/buttons.css">
     <link rel="stylesheet" href="settings.css">
-    <style>
-        html, body { overflow-x: hidden !important; max-width: 100vw; }
-        .dashboard-container { overflow-x: hidden !important; }
-        .main-content { max-width: 100vw !important; }
-        .content-area { overflow-x: hidden !important; }
-        .quick-links-section { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
-        .quick-link-card {
-            display:flex; align-items:center; gap:12px; padding:14px 16px;
-            background:#fff; border-radius:12px; text-decoration:none; color:inherit;
-            box-shadow:0 1px 3px rgba(0,0,0,.06); cursor:pointer; border:none; width:100%;
-            font-size:15px;
-        }
-        .quick-link-card i:first-child { font-size:20px; color:var(--primary,#667eea); width:28px; text-align:center; }
-        .quick-link-card span { flex:1; text-align:left; font-weight:50%; min-width:0; }
-        .quick-link-card i:last-child { color:#bbb; transition:transform .2s; }
-        .quick-link-card.open i:last-child { transform:rotate(90deg); }
-        .embed-panel {
-            display:none; background:#fff; border-radius:12px; overflow:hidden;
-            box-shadow:0 1px 3px rgba(0,0,0,.06); height:50vh; max-width:100%;
-        }
-        .embed-panel.show { display:block; }
-        .embed-panel iframe { width:100%; height:100%; border:none; }
-        /* 手机端：防止横向溢出 */
-        @media (max-width: 768px) {
-            .mirror-section { margin: 0 !important; }
-            .mirror-card { padding: 10px !important; }
-            .section-header { flex-wrap: wrap; gap: 8px; }
-            .section-header h2 { font-size: 15px !important; }
-            .section-header .save-btn { font-size: 12px !important; padding: 6px 10px !important; white-space: nowrap; }
-            .mirror-list .mirror-item { word-break: break-all; font-size: 13px !important; flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
-            .mirror-list .mirror-drag-handle { display: none !important; }
-            .mirror-list .mirror-url { word-break: break-all; width: 100%; }
-            .mirror-list .mirror-actions { align-self: flex-end; }
-            .mirror-add-form { flex-wrap: wrap; }
-            .mirror-add-form input { flex: 1; min-width: 0; font-size: 13px !important; }
-            .mirror-tips { font-size: 11px !important; line-height: 1.6; word-break: break-all; }
-        }
-    </style>
 </head>
 <body>
     <div class="dashboard-container" id="appContainer">
+        <!-- 侧边栏将通过JS动态加载 -->
+    
         <main class="main-content">
             <header class="top-header">
                 <div class="header-left">
@@ -66,6 +30,139 @@
             </header>
             
             <div class="content-area">
+                <section class="version-section">
+                    <div class="version-card">
+                        <div class="version-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="version-info">
+                            <h3>应用版本</h3>
+                            <p class="version-number" id="currentVersion">v1.0.0</p>
+                            <p class="version-date">构建时间: <span id="buildDate">2026-05-08</span></p>
+                            <div id="updateStatus" class="update-status"></div>
+                        </div>
+                        <div class="version-actions">
+                            <button id="checkUpdateBtn" class="check-update-btn" onclick="checkForUpdates()">
+                                <i class="fas fa-refresh"></i>
+                                <span>检查更新</span>
+                            </button>
+                            <a href="https://github.com/Double-Stack-Workshop/doublestack-shop" target="_blank" rel="noopener noreferrer" class="github-btn" title="访问项目 GitHub 仓库">
+                                <i class="fab fa-github"></i>
+                                <span>项目地址</span>
+                            </a>
+                            <button id="clearCacheBtn" class="check-update-btn" type="button" onclick="clearApplicationCache()">
+                                <i class="fas fa-broom"></i>
+                                <span>清理缓存</span>
+                            </button>
+                        </div>
+                    </div>
+            </section>
+            
+            <section class="domain-section">
+                <div class="section-header">
+                    <h2>全局域名/IP配置</h2>
+                    <button id="saveDomainBtn" class="save-btn" onclick="saveGlobalDomain()">
+                        <i class="fas fa-save"></i>
+                        <span>保存配置</span>
+                    </button>
+                </div>
+                
+                <div class="domain-card">
+                    <div class="domain-info">
+                        <div class="form-group">
+                            <label for="globalDomain">全局域名/IP地址</label>
+                            <input type="text" id="globalDomain" placeholder="localhost 或 https://example.com">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="proxy-section">
+                <div class="section-header">
+                    <h2>代理配置</h2>
+                    <button id="saveProxyBtn" class="save-btn" onclick="saveProxyConfig()">
+                        <i class="fas fa-save"></i>
+                        <span>保存配置</span>
+                    </button>
+                </div>
+                
+                <div class="proxy-card">
+                    <div class="proxy-info">
+                        <div class="form-group">
+                            <label for="httpProxy">HTTP代理</label>
+                            <input type="text" id="httpProxy" placeholder="http://localhost:port">
+                        </div>
+                        <div class="form-group">
+                            <label for="httpsProxy">HTTPS代理</label>
+                            <input type="text" id="httpsProxy" placeholder="https://localhost:port">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ai-settings-section" id="aiSettings">
+                <form id="aiConfigForm">
+                    <div class="section-header">
+                        <h2>OpenAI配置</h2>
+                        <div class="section-actions ai-config-actions">
+                            <button type="button" class="save-btn" id="testAiBtn" disabled><i class="fas fa-paper-plane" aria-hidden="true"></i><span>测试连接</span></button>
+                            <button type="submit" class="save-btn" id="saveAiBtn" disabled><i class="fas fa-save" aria-hidden="true"></i><span>保存配置</span></button>
+                        </div>
+                    </div>
+                    <fieldset id="aiConfigFields" disabled>
+                        <label class="ai-toggle-label"><input type="checkbox" id="aiEnabled"> 启用 AI 对话</label>
+                        <div class="form-group">
+                            <label for="aiBaseUrl">Base URL</label>
+                            <input type="url" id="aiBaseUrl" required maxlength="2048" placeholder="https://api.openai.com/v1">
+                        </div>
+                        <div class="form-group">
+                            <label for="aiModel">模型名称</label>
+                            <input type="text" id="aiModel" maxlength="200" placeholder="Qwen/Qwen3.5-27B">
+                        </div>
+                        <div class="form-group">
+                            <label for="aiApiKey">API Key</label>
+                            <input type="password" id="aiApiKey" maxlength="4096" autocomplete="new-password" placeholder="填写 API Key">
+                        </div>
+                    </fieldset>
+                    <p id="aiConfigStatus" class="ai-config-status" role="status" aria-live="polite">正在读取 AI 配置…</p>
+                </form>
+            </section>
+
+            <section class="apprise-section">
+                <div class="section-header">
+                    <h2>Apprise 通知</h2>
+                    <div class="section-actions">
+                        <button id="testAppriseBtn" class="save-btn" type="button" onclick="testAppriseNotification()">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>发送测试通知</span>
+                        </button>
+                        <button id="saveAppriseBtn" class="save-btn" onclick="saveAppriseConfig()">
+                            <i class="fas fa-save"></i>
+                            <span>保存配置</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="apprise-card">
+                    <label class="toggle-label" for="appriseEnabled">
+                        <input type="checkbox" id="appriseEnabled">
+                        <span>启用通知</span>
+                    </label>
+                    <div class="form-group">
+                        <label for="appriseUrl">Apprise 通知地址</label>
+                        <input type="url" id="appriseUrl" placeholder="http://localhost:port/notify/{key}">
+                    </div>
+                    <fieldset class="notification-events">
+                        <legend>通知类型</legend>
+                        <label><input type="checkbox" name="appriseEvent" value="deploy"> 容器部署</label>
+                        <label><input type="checkbox" name="appriseEvent" value="repo"> 仓库同步</label>
+                        <label><input type="checkbox" name="appriseEvent" value="image"> 镜像拉取</label>
+                        <label><input type="checkbox" name="appriseEvent" value="backup"> 容器备份与恢复</label>
+                        <label><input type="checkbox" name="appriseEvent" value="docker"> Docker 服务重启</label>
+                    </fieldset>
+                </div>
+            </section>
+            
             <section class="mirror-section">
                 <div class="section-header">
                     <h2>Docker 加速源</h2>
@@ -98,33 +195,6 @@
                     </div>
                 </div>
             </section>
-
-            <div class="quick-links-section">
-                <button class="quick-link-card" onclick="togglePanel('logsPanel', this)">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>操作日志</span>
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="embed-panel" id="logsPanel">
-                    <iframe src="/src/pages/logs/logs.html?embed=1"></iframe>
-                </div>
-                <button class="quick-link-card" onclick="togglePanel('usersPanel', this)">
-                    <i class="fas fa-user-cog"></i>
-                    <span>账户管理</span>
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="embed-panel" id="usersPanel" style="padding:16px;">
-                    <div style="margin-bottom:12px;">
-                        <label style="font-size:13px;color:#666;display:block;margin-bottom:4px;">用户名</label>
-                        <input type="text" id="adminUsername" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;box-sizing:border-box;" value="">
-                    </div>
-                    <div style="margin-bottom:12px;">
-                        <label style="font-size:13px;color:#666;display:block;margin-bottom:4px;">新密码（不修改请留空）</label>
-                        <input type="password" id="adminPassword" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;box-sizing:border-box;" placeholder="输入新密码">
-                    </div>
-                    <button onclick="saveAccount()" style="width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:15px;">保存修改</button>
-                </div>
-            </div>
             
             </div>
         </main>
@@ -134,50 +204,6 @@
     <script src="/src/components/common/page-common.js"></script>
     <script src="/src/components/common/cache.js"></script>
     <script src="settings.js"></script>
-    <script>
-    function togglePanel(id, btn) {
-        var p = document.getElementById(id);
-        var open = p.classList.toggle('show');
-        btn.classList.toggle('open', open);
-        document.querySelectorAll('.embed-panel').forEach(function(el){
-            if(el.id !== id) el.classList.remove('show');
-        });
-        document.querySelectorAll('.quick-link-card').forEach(function(el){
-            if(el !== btn) el.classList.remove('open');
-        });
-    }
-
-    // 账户管理
-    var origUsername = '';
-    async function loadAccount() {
-        const r = await fetch('/api/me');
-        if (r.ok) {
-            const d = await r.json();
-            origUsername = d.data.username;
-            document.getElementById('adminUsername').value = d.data.username;
-        }
-    }
-    loadAccount();
-
-    async function saveAccount() {
-        const btn = event.target;
-        const username = document.getElementById('adminUsername').value.trim();
-        const password = document.getElementById('adminPassword').value;
-        if (!username) { alert('用户名不能为空'); return; }
-        btn.disabled = true; btn.textContent = '保存中...';
-        try {
-            const body = { username };
-            if (password) body.password = password;
-            const r = await fetch('/api/users/' + encodeURIComponent(origUsername), {
-                method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
-            });
-            if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.detail || '保存失败'); }
-            origUsername = username;
-            document.getElementById('adminPassword').value = '';
-            alert('保存成功');
-        } catch(e) { alert(e.message); }
-        finally { btn.disabled = false; btn.textContent = '保存修改'; }
-    }
-    </script>
+    <script src="settings-ai.js"></script>
 </body>
 </html>
