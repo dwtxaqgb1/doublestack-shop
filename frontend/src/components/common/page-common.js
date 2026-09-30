@@ -16,14 +16,10 @@
             document.querySelectorAll('.sidebar-nav li').forEach((item, index) => {
                 if (index > 0) item.hidden = true;
             });
-        } else if (!window.location.pathname.endsWith('/ai/ai.html')) {
-            import('/src/components/ai-widget/ai-widget.js')
-                .then(module => module.initAIWidget())
-                .catch(error => console.error('AI 悬浮窗口加载失败:', error));
         }
     }
 
-    function requireLogin({ admin = false, loginPath = '/src/pages/login/login.html', fallbackPath = '/src/pages/dashboard/dashboard.html' } = {}) {
+    function requireLogin({ admin = false, loginPath = '/src/pages/login/login.html', fallbackPath = '/src/pages/container/container.html' } = {}) {
         const username = localStorage.getItem('username');
         const isAdmin = localStorage.getItem('is_admin') === 'true';
         if (!username) {

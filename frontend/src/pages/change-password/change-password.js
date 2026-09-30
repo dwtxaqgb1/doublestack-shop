@@ -12,7 +12,7 @@ async function initialize() {
             return;
         }
         if (!user.must_change_password) {
-            window.location.replace('/src/pages/dashboard/dashboard.html');
+            window.location.replace('/src/pages/container/container.html');
             return;
         }
         submitButton.disabled = false;

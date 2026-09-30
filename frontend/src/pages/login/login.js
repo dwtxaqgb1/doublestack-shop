@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     window.location.href = mustChangePassword
                         ? '/src/pages/change-password/change-password.html'
-                        : '/src/pages/dashboard/dashboard.html';
+                        : '/src/pages/container/container.html';
                 }, 1500);
             } else {
                 showMessage(result.message || result.detail || '登录失败', 'error');
