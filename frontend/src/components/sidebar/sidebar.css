@@ -453,12 +453,14 @@ body.embed-mode .content-area { padding:8px !important; }
     .user-avatar, .user-info { display: none !important; }
     .main-content .top-header {
         justify-content: flex-end !important;
+        align-items: center !important;
         margin: 8px 2px 0 !important;
-        padding: 12px 16px !important;
+        padding: 0 16px !important;
+        height: 48px !important;
+        min-height: 48px !important;
         border-radius: 12px !important;
         background: #fff !important;
         box-shadow: 0 1px 4px rgba(0,0,0,.06) !important;
-        min-height: auto !important;
     }
     .main-content .top-header .header-left h1 {
         margin: 0 !important; font-size: 22px !important; font-weight: 700 !important;
