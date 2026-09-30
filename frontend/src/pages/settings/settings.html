@@ -14,11 +14,19 @@
         .quick-link-card {
             display:flex; align-items:center; gap:12px; padding:14px 16px;
             background:#fff; border-radius:12px; text-decoration:none; color:inherit;
-            box-shadow:0 1px 3px rgba(0,0,0,.06);
+            box-shadow:0 1px 3px rgba(0,0,0,.06); cursor:pointer; border:none; width:100%;
+            font-size:15px;
         }
         .quick-link-card i:first-child { font-size:20px; color:var(--primary,#667eea); width:28px; text-align:center; }
-        .quick-link-card span { flex:1; font-size:15px; font-weight:500; }
-        .quick-link-card i:last-child { color:#bbb; }
+        .quick-link-card span { flex:1; text-align:left; font-weight:500; }
+        .quick-link-card i:last-child { color:#bbb; transition:transform .2s; }
+        .quick-link-card.open i:last-child { transform:rotate(90deg); }
+        .embed-panel {
+            display:none; background:#fff; border-radius:12px; overflow:hidden;
+            box-shadow:0 1px 3px rgba(0,0,0,.06); height:60vh;
+        }
+        .embed-panel.show { display:block; }
+        .embed-panel iframe { width:100%; height:100%; border:none; }
     </style>
 </head>
 <body>
@@ -73,16 +81,22 @@
             </section>
 
             <div class="quick-links-section">
-                <a href="/src/pages/logs/logs.html" class="quick-link-card">
+                <button class="quick-link-card" onclick="togglePanel('logsPanel', this)">
                     <i class="fas fa-clipboard-list"></i>
                     <span>操作日志</span>
                     <i class="fas fa-chevron-right"></i>
-                </a>
-                <a href="/src/pages/users/users.html" class="quick-link-card">
+                </button>
+                <div class="embed-panel" id="logsPanel">
+                    <iframe src="/src/pages/logs/logs.html?embed=1"></iframe>
+                </div>
+                <button class="quick-link-card" onclick="togglePanel('usersPanel', this)">
                     <i class="fas fa-user-cog"></i>
                     <span>用户管理</span>
                     <i class="fas fa-chevron-right"></i>
-                </a>
+                </button>
+                <div class="embed-panel" id="usersPanel">
+                    <iframe src="/src/pages/users/users.html?embed=1"></iframe>
+                </div>
             </div>
             
             </div>
@@ -93,5 +107,19 @@
     <script src="/src/components/common/page-common.js"></script>
     <script src="/src/components/common/cache.js"></script>
     <script src="settings.js"></script>
+    <script>
+    function togglePanel(id, btn) {
+        var p = document.getElementById(id);
+        var open = p.classList.toggle('show');
+        btn.classList.toggle('open', open);
+        // 同时只展开一个
+        document.querySelectorAll('.embed-panel').forEach(function(el){
+            if(el.id !== id) el.classList.remove('show');
+        });
+        document.querySelectorAll('.quick-link-card').forEach(function(el){
+            if(el !== btn) el.classList.remove('open');
+        });
+    }
+    </script>
 </body>
 </html>

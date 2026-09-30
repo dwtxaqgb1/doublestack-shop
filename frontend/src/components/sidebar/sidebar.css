@@ -441,3 +441,9 @@
     .stats-cards .card-value { font-size: 14px !important; margin: 0 !important; }
     .stats-cards .card-label, .stats-cards .card p { font-size: 9px !important; margin: 0 !important; }
 }
+
+/* embed模式：去掉侧边栏留白 */
+body.embed-mode .main-content { margin-left:0 !important; padding:12px !important; }
+body.embed-mode .top-header { padding:8px 12px !important; }
+body.embed-mode .content-area { padding:8px !important; }
+

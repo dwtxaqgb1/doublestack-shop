@@ -3,6 +3,10 @@
     const PASSWORD_CHANGE_PATH = '/src/pages/change-password/change-password.html';
 
     async function loadSidebar(currentPage, containerId = 'appContainer') {
+        if (new URLSearchParams(location.search).get('embed')) {
+            document.body.classList.add('embed-mode');
+            return;
+        }
         const user = await syncCurrentUser();
         if (!user || user.must_change_password) return;
         const response = await fetch('/src/components/sidebar/sidebar.html');
