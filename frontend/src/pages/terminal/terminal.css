@@ -300,6 +300,7 @@ body {
 /* 手机端适配 */
 @media (max-width: 768px) {
     .main-content { margin-left: 0 !important; padding: 0 !important; }
-    .content-area { padding: 4px !important; }
-    .terminal-container, .terminal-controls { margin: 4px !important; border-radius: 12px !important; }
+    .content-area { padding: 2px !important; }
+    .terminal-controls { margin: 2px !important; border-radius: 12px !important; padding: 8px !important; }
+    #terminal { margin: 2px !important; border-radius: 12px !important; }
 }
