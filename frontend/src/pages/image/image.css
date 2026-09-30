@@ -1286,5 +1286,8 @@ body {
     .image-info h3 { font-size: 14px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .image-meta { font-size: 11px !important; gap: 6px !important; flex-wrap: wrap !important; }
     .image-actions { gap: 4px !important; flex-wrap: wrap !important; }
+
+    /* 隐藏状态文字标签，只用左边框颜色区分 */
+    .image-state-badge { display: none !important; }
     .image-actions .action-btn { padding: 4px 8px !important; font-size: 11px !important; }
 }
