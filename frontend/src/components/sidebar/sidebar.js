@@ -61,7 +61,9 @@ async function loadSidebarVersion() {
     const btn = document.createElement('button');
     btn.className = 'mobile-menu-btn';
     btn.innerHTML = '<i class="fas fa-bars"></i>';
-    document.body.appendChild(btn);
+    const header = document.querySelector('.top-header .header-left');
+    if (header) header.appendChild(btn);
+    else document.body.appendChild(btn);
     const overlay = document.createElement('div');
     overlay.className = 'mobile-overlay';
     document.body.appendChild(overlay);
