@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/src/components/common/buttons.css">
     <link rel="stylesheet" href="settings.css">
     <style>
+        html, body { overflow-x: hidden !important; max-width: 100vw; }
+        .dashboard-container { overflow-x: hidden !important; }
+        .main-content { max-width: 100vw !important; }
+        .content-area { overflow-x: hidden !important; }
         .quick-links-section { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
         .quick-link-card {
             display:flex; align-items:center; gap:12px; padding:14px 16px;
@@ -18,7 +22,7 @@
             font-size:15px;
         }
         .quick-link-card i:first-child { font-size:20px; color:var(--primary,#667eea); width:28px; text-align:center; }
-        .quick-link-card span { flex:1; text-align:left; font-weight:500; }
+        .quick-link-card span { flex:1; text-align:left; font-weight:50%; min-width:0; }
         .quick-link-card i:last-child { color:#bbb; transition:transform .2s; }
         .quick-link-card.open i:last-child { transform:rotate(90deg); }
         .embed-panel {
@@ -27,6 +31,18 @@
         }
         .embed-panel.show { display:block; }
         .embed-panel iframe { width:100%; height:100%; border:none; }
+        /* 手机端：防止横向溢出 */
+        @media (max-width: 768px) {
+            .mirror-section { margin: 0 !important; }
+            .mirror-card { padding: 10px !important; }
+            .section-header { flex-wrap: wrap; gap: 8px; }
+            .section-header h2 { font-size: 15px !important; }
+            .section-header .save-btn { font-size: 12px !important; padding: 6px 10px !important; white-space: nowrap; }
+            .mirror-list .mirror-item { word-break: break-all; font-size: 13px !important; }
+            .mirror-add-form { flex-wrap: wrap; }
+            .mirror-add-form input { flex: 1; min-width: 0; font-size: 13px !important; }
+            .mirror-tips { font-size: 11px !important; line-height: 1.6; word-break: break-all; }
+        }
     </style>
 </head>
 <body>
