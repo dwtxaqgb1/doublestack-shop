@@ -699,7 +699,7 @@ body {
     .filter-bar button { font-size: 13px !important; padding: 6px 10px !important; }
 
     /* 容器卡片：列布局，按钮在底部 */
-    .containers-grid { display: flex !important; flex-direction: column !important; gap: 8px !important; }
+    .containers-grid { display: flex !important; flex-direction: column !important; gap: 8px !important; margin: 0 !important; }
     .container-card {
         flex-direction: column !important;
         padding: 10px 12px !important;
