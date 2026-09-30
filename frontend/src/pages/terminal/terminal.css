@@ -301,6 +301,7 @@ body {
 @media (max-width: 768px) {
     .main-content { margin-left: 0 !important; padding: 0 !important; }
     .content-area { padding: 2px !important; }
-    .terminal-controls { margin: 2px !important; border-radius: 12px !important; padding: 8px !important; }
-    #terminal { margin: 2px !important; border-radius: 12px !important; }
+    .terminal-section { padding: 2px !important; }
+    .terminal-toolbar { padding: 8px !important; border-radius: 12px 12px 0 0 !important; }
+    .terminal-wrapper { border-radius: 0 0 12px 12px !important; }
 }
