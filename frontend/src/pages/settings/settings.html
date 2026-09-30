@@ -113,8 +113,16 @@
                     <span>账户管理</span>
                     <i class="fas fa-chevron-right"></i>
                 </button>
-                <div class="embed-panel" id="usersPanel">
-                    <iframe src="/src/pages/users/users.html?embed=1"></iframe>
+                <div class="embed-panel" id="usersPanel" style="padding:16px;">
+                    <div style="margin-bottom:12px;">
+                        <label style="font-size:13px;color:#666;display:block;margin-bottom:4px;">用户名</label>
+                        <input type="text" id="adminUsername" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;box-sizing:border-box;" value="">
+                    </div>
+                    <div style="margin-bottom:12px;">
+                        <label style="font-size:13px;color:#666;display:block;margin-bottom:4px;">新密码（不修改请留空）</label>
+                        <input type="password" id="adminPassword" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;box-sizing:border-box;" placeholder="输入新密码">
+                    </div>
+                    <button onclick="saveAccount()" style="width:100%;padding:12px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:15px;">保存修改</button>
                 </div>
             </div>
             
@@ -131,13 +139,44 @@
         var p = document.getElementById(id);
         var open = p.classList.toggle('show');
         btn.classList.toggle('open', open);
-        // 同时只展开一个
         document.querySelectorAll('.embed-panel').forEach(function(el){
             if(el.id !== id) el.classList.remove('show');
         });
         document.querySelectorAll('.quick-link-card').forEach(function(el){
             if(el !== btn) el.classList.remove('open');
         });
+    }
+
+    // 账户管理
+    var origUsername = '';
+    async function loadAccount() {
+        const r = await fetch('/api/me');
+        if (r.ok) {
+            const d = await r.json();
+            origUsername = d.data.username;
+            document.getElementById('adminUsername').value = d.data.username;
+        }
+    }
+    loadAccount();
+
+    async function saveAccount() {
+        const btn = event.target;
+        const username = document.getElementById('adminUsername').value.trim();
+        const password = document.getElementById('adminPassword').value;
+        if (!username) { alert('用户名不能为空'); return; }
+        btn.disabled = true; btn.textContent = '保存中...';
+        try {
+            const body = { username };
+            if (password) body.password = password;
+            const r = await fetch('/api/users/' + encodeURIComponent(origUsername), {
+                method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
+            });
+            if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.detail || '保存失败'); }
+            origUsername = username;
+            document.getElementById('adminPassword').value = '';
+            alert('保存成功');
+        } catch(e) { alert(e.message); }
+        finally { btn.disabled = false; btn.textContent = '保存修改'; }
     }
     </script>
 </body>
