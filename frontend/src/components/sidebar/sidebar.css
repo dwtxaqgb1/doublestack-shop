@@ -468,5 +468,5 @@ body.embed-mode .content-area { padding:8px !important; }
 }
 
 /* 侧边栏标题右对齐 */
-.sidebar-header { text-align: right !important; padding-right: 16px !important; }
+.sidebar-header { text-align: right !important; padding-right: 16px !important; padding-left: 40px !important; }
 .sidebar-header .logo span { justify-content: flex-end !important; }
