@@ -53,3 +53,23 @@ async function loadSidebarVersion() {
         // 保留 HTML 中的默认版本，侧边栏不能因版本请求失败而影响使用。
     }
 }
+
+// ===== Mobile hamburger menu =====
+(function() {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+    const btn = document.createElement('button');
+    btn.className = 'mobile-menu-btn';
+    btn.innerHTML = '<i class="fas fa-bars"></i>';
+    document.body.appendChild(btn);
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-overlay';
+    document.body.appendChild(overlay);
+    function toggle(open) {
+        sidebar.classList.toggle('mobile-open', open);
+        overlay.classList.toggle('show', open);
+    }
+    btn.addEventListener('click', () => toggle(!sidebar.classList.contains('mobile-open')));
+    overlay.addEventListener('click', () => toggle(false));
+    sidebar.querySelectorAll('.sidebar-nav a').forEach(a => a.addEventListener('click', () => toggle(false)));
+})();
