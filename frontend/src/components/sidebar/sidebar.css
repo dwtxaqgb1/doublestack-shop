@@ -448,7 +448,17 @@ body.embed-mode .top-header { padding:8px 12px !important; }
 body.embed-mode .content-area { padding:8px !important; }
 
 
-/* 手机端：去掉右上角头像 */
+/* 手机端：标题栏调整 */
 @media (max-width: 768px) {
     .user-avatar { display: none !important; }
+    .user-info { display: none !important; }
+    .top-header {
+        justify-content: flex-end !important;
+        margin: 8px 8px 0 !important;
+        padding: 10px 16px !important;
+        border-radius: 12px !important;
+        background: #fff !important;
+        box-shadow: 0 1px 4px rgba(0,0,0,.06) !important;
+    }
+    .header-left h1 { margin: 0 !important; font-size: 15px !important; }
 }
