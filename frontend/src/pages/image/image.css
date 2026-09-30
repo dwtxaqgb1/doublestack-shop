@@ -1251,3 +1251,34 @@ body {
         flex-wrap: wrap;
     }
 }
+
+/* ===== 手机端适配 ===== */
+@media (max-width: 768px) {
+    .main-content { margin-left: 0 !important; padding: 8px !important; }
+    .top-header { padding: 8px 10px !important; }
+    .top-header h1 { font-size: 16px !important; }
+    .user-info .username { display: none; }
+
+    /* 4个统计一行显示 */
+    .image-stats { display: flex !important; flex-direction: row !important; gap: 4px !important; padding: 8px !important; margin-bottom: 8px !important; }
+    .stat-card { flex: 1; padding: 6px 4px !important; flex-direction: column !important; align-items: center !important; text-align: center !important; }
+    .stat-icon { width: 24px !important; height: 24px !important; font-size: 12px !important; }
+    .stat-value { font-size: 15px !important; }
+    .stat-label { font-size: 11px !important; }
+
+    /* 操作按钮行紧凑 */
+    .image-actions, .action-bar, .toolbar { padding: 8px !important; gap: 6px !important; flex-wrap: wrap; }
+    .image-actions button, .action-bar button, .toolbar button { font-size: 13px !important; padding: 6px 10px !important; }
+
+    /* 筛选搜索紧凑 */
+    .filter-bar, .search-bar { padding: 8px !important; gap: 6px !important; flex-wrap: wrap; }
+    .filter-bar select, .search-bar input { font-size: 13px !important; padding: 6px 8px !important; }
+
+    /* 镜像卡片紧凑 */
+    .image-list, .images-grid { gap: 8px !important; }
+    .image-card, .image-item { padding: 10px !important; }
+    .image-card .image-name, .image-item .image-name { font-size: 14px !important; }
+    .image-card .image-meta, .image-item .image-meta { font-size: 12px !important; gap: 6px !important; flex-wrap: wrap; }
+    .image-card .image-actions, .image-item .image-actions { gap: 4px !important; }
+    .image-card .image-actions button, .image-item .image-actions button { padding: 4px 8px !important; font-size: 12px !important; }
+}
