@@ -679,7 +679,7 @@ body {
     html, body { overflow-x: hidden !important; width: 100% !important; }
     .dashboard-container, .container-container { overflow-x: hidden !important; }
 
-    .main-content { margin-left: 0 !important; padding: 0 !important; width: 100vw !important; }
+    .main-content { margin-left: 0 !important; padding: 0 !important; width: 100% !important; }
     .top-header { padding: 8px 12px !important; }
     .top-header h1 { font-size: 16px !important; }
     .user-info .username { display: none; }
@@ -695,31 +695,42 @@ body {
 
     /* 筛选栏 */
     .filter-bar { flex-wrap: wrap !important; gap: 6px !important; padding: 8px !important; margin-bottom: 8px !important; }
-    .filter-bar select, .filter-bar input { font-size: 13px !important; padding: 6px 8px !important; width: auto !important; flex: 1 !important; }
+    .filter-bar select, .filter-bar input { font-size: 13px !important; padding: 6px 8px !important; }
     .filter-bar button { font-size: 13px !important; padding: 6px 10px !important; }
 
-    /* 容器卡片：一行紧凑布局 */
+    /* 容器卡片：列布局，按钮在底部 */
     .containers-grid { display: flex !important; flex-direction: column !important; gap: 8px !important; }
     .container-card {
-        flex-direction: row !important; flex-wrap: wrap !important;
-        padding: 10px !important; margin-bottom: 0 !important;
-        align-items: center !important; gap: 8px !important;
+        flex-direction: column !important;
+        padding: 10px 12px !important;
+        margin-bottom: 0 !important;
+        gap: 6px !important;
+        align-items: stretch !important;
     }
-    .container-icon { width: 32px !important; height: 32px !important; font-size: 14px !important; flex-shrink: 0; }
-    .container-info { gap: 8px !important; flex: 1 !important; min-width: 0 !important; }
-    .container-details { min-width: 0 !important; flex: 1 !important; }
-    .container-details h3 { font-size: 14px !important; margin-bottom: 2px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .container-meta { font-size: 11px !important; gap: 6px !important; flex-wrap: wrap !important; color: #888; }
+    .container-icon { display: none !important; }
+    .container-info { gap: 0 !important; flex: 1 !important; width: 100% !important; }
+    .container-details { width: 100% !important; }
+    .container-details h3 { font-size: 15px !important; margin-bottom: 2px !important; }
+    .container-details h3 .container-name-link { font-size: 15px !important; }
+    .container-meta { font-size: 11px !important; gap: 8px !important; color: #888; }
 
-    /* 状态标签不固定宽度，不重叠 */
+    /* 状态标签在标题右侧 */
     .container-status {
+        position: absolute !important; right: 12px !important; top: 10px !important;
         width: auto !important; margin-right: 0 !important;
-        gap: 6px !important; justify-content: flex-end !important;
-        flex-shrink: 0;
     }
+    .container-card { position: relative !important; }
     .status-badge { font-size: 11px !important; padding: 2px 8px !important; }
 
-    /* 操作按钮行 */
-    .container-actions { gap: 4px !important; width: 100% !important; justify-content: flex-end !important; flex-wrap: wrap; }
-    .container-actions button { padding: 4px 8px !important; font-size: 11px !important; }
+    /* 按钮在底部一排居中 */
+    .container-actions {
+        width: 100% !important; justify-content: center !important;
+        gap: 6px !important; padding-top: 6px !important;
+        border-top: 1px solid #f0f0f0; margin-top: 4px;
+    }
+    .container-actions button {
+        width: 36px !important; height: 36px !important;
+        padding: 0 !important; font-size: 14px !important;
+        display: flex !important; align-items: center; justify-content: center;
+    }
 }
