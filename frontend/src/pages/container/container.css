@@ -683,7 +683,7 @@ body {
     .top-header { padding: 8px 12px !important; }
     .top-header h1 { font-size: 16px !important; }
     .user-info .username { display: none; }
-    .content-area { padding: 2px !important; overflow-x: hidden !important; }
+    .content-area { padding: 4px !important; overflow-x: hidden !important; }
 
     /* 统计栏一行 */
     .stats-bar { display: flex !important; flex-direction: row !important; gap: 4px !important; padding: 8px !important; margin-bottom: 8px !important; }
@@ -706,10 +706,7 @@ body {
         margin-bottom: 0 !important;
         gap: 6px !important;
         align-items: stretch !important;
-        border-radius: 16px !important;
     }
-    .container-details h3 { text-align: right !important; }
-    .container-meta { justify-content: flex-end !important; }
     .container-icon { display: none !important; }
     .container-info { gap: 0 !important; flex: 1 !important; width: 100% !important; }
     .container-details { width: 100% !important; }
