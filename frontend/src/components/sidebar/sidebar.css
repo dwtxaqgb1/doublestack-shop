@@ -460,9 +460,13 @@ body.embed-mode .content-area { padding:8px !important; }
         border-radius: 12px !important;
         background: linear-gradient(135deg, #667eea, #764ba2) !important;
         box-shadow: 0 2px 8px rgba(102,126,234,.3) !important;
+        position: relative !important;
     }
     .main-content .top-header .header-left h1 {
         margin: 0 !important; font-size: 20px !important; font-weight: 700 !important; color: #fff !important;
+    }
+    .main-content .top-header .mobile-menu-btn {
+        position: absolute !important; left: 10px !important; top: 50% !important; transform: translateY(-50%) !important;
     }
 }
 
