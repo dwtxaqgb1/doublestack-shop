@@ -944,7 +944,8 @@ body {
     html, body { overflow-x: hidden !important; width: 100% !important; }
     .backup-container { overflow-x: hidden !important; }
 
-    .main-content { margin-left: 0 !important; padding: 0 !important; width: 100vw !important; }
+    .main-content { margin-left: 0 !important; padding: 0 !important; width: 100% !important; }
+    .backups-grid { margin: 0 !important; }
     .top-header { padding: 8px 12px !important; }
     .top-header h1 { font-size: 16px !important; }
     .user-info .username { display: none; }
