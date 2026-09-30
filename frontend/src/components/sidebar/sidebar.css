@@ -459,11 +459,11 @@ body.embed-mode .content-area { padding:8px !important; }
         height: 48px !important;
         min-height: 48px !important;
         border-radius: 12px !important;
-        background: #fff !important;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06) !important;
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        box-shadow: 0 2px 8px rgba(102,126,234,.3) !important;
     }
     .main-content .top-header .header-left h1 {
-        margin: 0 !important; font-size: 22px !important; font-weight: 700 !important;
+        margin: 0 !important; font-size: 20px !important; font-weight: 700 !important; color: #fff !important;
     }
 }
 
