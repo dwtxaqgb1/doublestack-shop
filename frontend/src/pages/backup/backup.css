@@ -938,30 +938,30 @@ body {
     cursor: not-allowed;
 }
 
+
 /* ===== 手机端适配 ===== */
 @media (max-width: 768px) {
-    .main-content { margin-left: 0 !important; padding: 8px !important; }
-    .top-header { padding: 8px 10px !important; }
+    html, body { overflow-x: hidden !important; width: 100% !important; }
+    .backup-container { overflow-x: hidden !important; }
+
+    .main-content { margin-left: 0 !important; padding: 0 !important; width: 100vw !important; }
+    .top-header { padding: 8px 12px !important; }
     .top-header h1 { font-size: 16px !important; }
     .user-info .username { display: none; }
+    .content-area { padding: 8px !important; overflow-x: hidden !important; }
 
     /* 统计栏一行 */
     .stats-bar { display: flex !important; flex-direction: row !important; gap: 4px !important; padding: 8px !important; margin-bottom: 8px !important; }
-    .stat-item { flex: 1; padding: 6px 4px !important; flex-direction: row !important; gap: 4px !important; }
-    .stat-icon { width: 24px !important; height: 24px !important; font-size: 12px !important; }
-    .stat-value { font-size: 16px !important; }
-    .stat-label { font-size: 11px !important; }
-
-    /* 筛选按钮紧凑 */
-    .filter-bar { flex-wrap: wrap; gap: 6px !important; padding: 8px !important; margin-bottom: 8px !important; }
-    .filter-bar select, .filter-bar input { font-size: 13px !important; padding: 6px 8px !important; }
-    .filter-bar button { font-size: 13px !important; padding: 6px 10px !important; }
+    .stat-item { flex: 1 !important; padding: 6px 2px !important; flex-direction: row !important; gap: 4px !important; min-width: 0; }
+    .stat-icon { width: 22px !important; height: 22px !important; font-size: 11px !important; }
+    .stat-value { font-size: 15px !important; }
+    .stat-label { font-size: 10px !important; }
 
     /* 备份卡片紧凑 */
-    .backup-list, .backups-grid { gap: 8px !important; }
-    .backup-card, .backup-item { padding: 10px !important; }
-    .backup-card .container-name, .backup-item .container-name { font-size: 14px !important; }
-    .backup-card .backup-meta, .backup-item .backup-meta { font-size: 12px !important; gap: 6px !important; flex-wrap: wrap; }
-    .backup-card .backup-actions, .backup-item .backup-actions { gap: 4px !important; }
-    .backup-card .backup-actions button, .backup-item .backup-actions button { padding: 4px 8px !important; font-size: 12px !important; }
+    .backups-grid, .backup-list { display: flex !important; flex-direction: column !important; gap: 8px !important; }
+    .backup-card { padding: 10px !important; margin-bottom: 0 !important; }
+    .backup-card .container-name { font-size: 14px !important; }
+    .backup-meta { font-size: 11px !important; gap: 6px !important; flex-wrap: wrap !important; }
+    .backup-actions-bar { gap: 4px !important; flex-wrap: wrap !important; }
+    .backup-actions-bar button { padding: 4px 8px !important; font-size: 11px !important; }
 }
