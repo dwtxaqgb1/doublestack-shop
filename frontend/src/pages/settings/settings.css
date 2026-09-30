@@ -1264,3 +1264,12 @@ body {
     cursor: not-allowed;
     transform: none;
 }
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+    .main-content { margin-left: 0 !important; padding: 0 !important; }
+    .content-area { padding: 4px !important; }
+    .mirror-section, .quick-links-section { margin: 4px !important; }
+    .mirror-card { padding: 12px !important; border-radius: 12px !important; }
+    .section-header h2 { font-size: 15px !important; }
+}

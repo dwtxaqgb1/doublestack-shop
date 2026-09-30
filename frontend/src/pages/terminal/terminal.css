@@ -296,3 +296,10 @@ body {
         display: none;
     }
 }
+
+/* 手机端适配 */
+@media (max-width: 768px) {
+    .main-content { margin-left: 0 !important; padding: 0 !important; }
+    .content-area { padding: 4px !important; }
+    .terminal-container, .terminal-controls { margin: 4px !important; border-radius: 12px !important; }
+}
